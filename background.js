@@ -150,8 +150,8 @@ function updateTabAndAlert(finding) {
       if (notifications && notifications["notifications"]) {
         chrome.notifications.create(src + new Date(), {
           type: "basic",
-          iconUrl: "icon128.png",
-          title: `ZeusLeak | ${key}`,
+          iconUrl: "icon.jpg",
+          title: `ShadowHound | ${key}`,
           message: notifyText,
           priority: 2
         });
