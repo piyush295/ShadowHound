@@ -175,7 +175,7 @@ function downloadCSV() {
         
         chrome.downloads.download({
             url: url,
-            filename: 'zeusleak_findings.csv',
+            filename: 'ShadowHound_findings.csv',
             conflictAction: 'uniquify'
         });
     });
