@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "ZeusLeak",
+    "name": "ShadowHound",
     "version": "1.0",
     "description": "Automatically detects leaked secrets and credentials in code while browsing.",
     "permissions": [
@@ -20,9 +20,9 @@
       "default_popup": "popup.html"
     },
     "icons": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "icon.jpg",
+      "48": "icon.jpg",
+      "128": "icon.jpg"
     },
     "content_scripts": [
       {
