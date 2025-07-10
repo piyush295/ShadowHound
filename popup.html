@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CyberForenX Securet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #0c0c0c;
+      color: #fff;
+      width: 350px;
+    }
+    .logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 80px;
+      filter: drop-shadow(0 0 5px rgb(100, 25, 199));
+    }
+
+    .switchable {
+      padding: 0 20px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 15px 0;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed #555;
+    }
+    .option h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: rgb(255, 0, 68);
+      text-shadow: 0 0 3px rgb(40, 17, 187);
+    }
+    .option h5 {
+      margin: 4px 0 0 0;
+      font-size: 0.7rem;
+      color: #999;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0;
+      right: 0; bottom: 0;
+      background-color: #444;
+      transition: .4s;
+      border-radius: 34px;
+      box-shadow: 0 0 4px #0ff inset, 0 0 6px #0ff;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #aaa;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0 0 2px #fff;
+    }
+    input:checked + .slider {
+      background-color: #0ff;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+      background-color: #000;
+      box-shadow: 0 0 2px #0ff;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #333;
+      margin: 10px 0;
+    }
+
+    .accordion {
+      background-color: #111;
+      color: #0ff;
+      cursor: pointer;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      transition: 0.4s;
+      font-size: 1rem;
+      text-shadow: 0 0 3px #0ff;
+      margin: 0;
+      margin-bottom: 5px;
+    }
+    .accordion:hover {
+      background-color: #222;
+    }
+    .panel {
+      padding: 0 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      margin-bottom: 10px;
+    }
+    .panel.open {
+      max-height: 200px;
+    }
+    .panel textarea, .panel button, .panel ul {
+      margin-top: 10px;
+    }
+
+    .panel button {
+      background: #222;
+      color: #0ff;
+      border: 1px solid #0ff;
+      cursor: pointer;
+      padding: 5px 10px;
+      font-family: 'Orbitron', sans-serif;
+      transition: 0.3s;
+    }
+    .panel button:hover {
+      background: rgb(154, 15, 197);
+      color: #031d4e97;
+    }
+    textarea {
+      background: #000;
+      color: #0ff;
+      border: 1px solid #333;
+      width: 100%;
+      height: 40px;
+      padding: 5px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    #findingList {
+      list-style: none;
+      margin: 5px 0;
+      padding: 0;
+      color: #f00;
+    }
+    #findingList li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Logo -->
+  <img src='./icon.jpg' class="logo" alt="ShadowHound Logo">
+  
+  <!-- Hacker-Style Welcome Message -->
+  <div style="text-align:center; margin-bottom: 10px;">
+    <h2 style="color:rgb(0, 140, 255); text-shadow: 0 0 5px rgb(255, 0, 0); margin:0; font-size:1.2rem;">
+      Welcome to the <span style="color:rgb(70, 22, 144);">ShadowHound</span> realm, secret hunter!
+    </h2>
+    <p style="font-size:0.8rem; color:#9e0aae; margin:5px 0;">
+      Gear up to breach the silence and unearth hidden treasures 👾
+    </p>
+  </div>
+
+  <div class="switchable">
+    <div class="option">
+      <h3>Generic Secrets</h3>
+      <label class="switch">
+        <input type="checkbox" id="generics">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="option">
+      <h3>Specific Secrets</h3>
+      <label class="switch">
+        <input type="checkbox" id="specifics">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="option">
+      <h3>AWS Keys</h3>
+      <label class="switch">
+        <input type="checkbox" id="aws">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="option" style="margin-bottom: 10px">
+      <h3>.env Files</h3>
+      <label class="switch">
+        <input type="checkbox" id="checkEnv">
+        <span class="slider"></span>
+      </label>
+      <h5>(might poke some WAFs)</h5>
+    </div>
+    <div class="option" style="margin-bottom: 10px">
+      <h3>.git Dirs</h3>
+      <label class="switch">
+        <input type="checkbox" id="checkGit">
+        <span class="slider"></span>
+      </label>
+      <h5>(might poke some WAFs)</h5>
+    </div>
+    <div class="option">
+      <h3>Alerts</h3>
+      <label class="switch">
+        <input type="checkbox" id="alerts">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="option">
+      <h3>Notifications</h3>
+      <label class="switch">
+        <input type="checkbox" id="notifications">
+        <span class="slider"></span>
+      </label>
+      <h5>Short pop-ups to keep you in the loop</h5>
+    </div>
+    <div class="option">
+      <h3>Ignore Duplicates</h3>
+      <label class="switch">
+        <input type="checkbox" id="uniqueByHostname">
+        <span class="slider"></span>
+      </label>
+      <h5>Skip repeated secrets from the same host</h5>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <div>
+      <button class="accordion"><h3>Origin Deny List</h3></button>
+      <div class="panel">
+        <p>Comma Separated</p>
+        <textarea id="denyList"></textarea>
+      </div>
+    </div>
+
+    <div>
+      <button class="accordion"><h3>Findings</h3></button>
+      <div class="panel">
+        <button id="clearOriginFindings">Clear This Origin</button>
+        <button id="clearAllFindings">Clear All Origins</button>
+        <button id="downloadAllFindings">Download All Findings</button>
+        <h5>Findings for this origin</h5>
+        <ul id="findingList"></ul>
+      </div>
+    </div>
+
+    <div>
+      <button class="accordion"><h3>Open Lots Of Tabs</h3></button>
+      <div class="panel">
+        <p>Comma Separated</p>
+        <button id="openTabs">Open Tabs</button>
+        <textarea id="tabList" placeholder="https://google.com,https://yahoo.com"></textarea>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
